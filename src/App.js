@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import UserList from "./components/UserList";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // se ejecuta al iniciar el componente
+    const urlApiusers =
+      "https://raw.githubusercontent.com/ORT-PabloFernandez/PNTP2-REACT-EJEMPLO/main/src/data/Users.json";
+
+    fetch(urlApiusers)
+      .then((response) => response.json())
+      .then((data) => setUsers(data));
+  }, []);
+
+  // const users = [
+  //   {
+  //     "Display Name": "Adele Vance",
+  //     Title: "Retail Manager",
+  //     Picture:
+  //       "https://raw.githubusercontent.com/ORT-PabloFernandez/PNTP2-REACT-EJEMPLO/main/public/img/Adele%20Vance.jpg",
+  //   },
+  //   {
+  //     "Display Name": "Alex Wilber",
+  //     Title: "Marketing Assistant",
+  //     Picture:
+  //       "https://raw.githubusercontent.com/ORT-PabloFernandez/PNTP2-REACT-EJEMPLO/main/public/img/Alex%20Wilber.jpg",
+  //   },
+  // ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <UserList Users={users} />
     </div>
   );
 }
