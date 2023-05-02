@@ -11,6 +11,7 @@ const UserList = (props) => {
             Username={user["Display name"]}
             Title={user.Title}
             Picture={user.Picture}
+            Id={user["Object Id"]}
           />
         );
       })}
